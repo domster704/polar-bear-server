@@ -26,4 +26,4 @@ def test():
 	return Response(response=response_pickled, status=200, mimetype=None)
 
 
-app.run(host="0.0.0.0", port=5000)
+# app.run(host="0.0.0.0", port=5000)
