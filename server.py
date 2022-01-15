@@ -6,7 +6,7 @@ import cv2
 app = Flask(__name__)
 
 
-@app.route('/api/test', methods=['POST'])
+@app.route('/api/test', methods=['GET', 'POST'])
 def test():
 	r = request
 	nparr = np.frombuffer(r.data, np.uint8)
@@ -23,7 +23,7 @@ def test():
 	# print(jsonpickle.decode(response_pickled).tobytes())
 	response_pickled = jsonpickle.decode(response_pickled).tobytes()
 
-	return Response(response=response_pickled, status=200, mimetype="bytes")
+	return Response(response=response_pickled, status=200, mimetype=None)
 
 
 app.run(host="0.0.0.0", port=5000)
