@@ -5,6 +5,7 @@ from flask import Flask, request, Response
 from Detector import Detector
 
 app = Flask(__name__)
+detector = None
 
 
 @app.route('/api/detectBear', methods=['POST'])
@@ -22,6 +23,14 @@ def detect():
 	response_pickled = jsonpickle.decode(jsonpickle.encode(img_encoded)).tobytes()
 
 	return Response(response=response_pickled, status=200, mimetype=None)
+
+
+@app.route('/api/getStatus', methods=['GET'])
+def getStatus():
+	if detector is not None and isinstance(detector, Detector):
+		return detector.isBearExisted()
+	else:
+		return "Вы ещё не просканировали фото"
 
 
 @app.route("/", methods=['GET'])

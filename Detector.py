@@ -30,12 +30,12 @@ class Detector:
 		saturation = hsvImg[:, :, 1]
 		value = hsvImg[:, :, 2]
 
-		self._countAverageLight(value)
+		self._countAverageSaturation(value)
 		self._createBGRImg(hue, saturation, value)
 		self._createMask()
 		self._setRectangleOnImg(self._getMaxDensityIndex())
 
-	def _countAverageLight(self, value):
+	def _countAverageSaturation(self, value):
 		count = 0
 		for i in range(0, value.shape[0], 115):
 			for j in range(0, value.shape[1], 307):
