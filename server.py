@@ -1,36 +1,32 @@
-from flask import Flask, request, Response
+import cv2
 import jsonpickle
 import numpy as np
-import cv2
+from flask import Flask, request, Response
+from Detector import Detector
 
 app = Flask(__name__)
 
 
-@app.route('/api/test', methods=['POST'])
-def test():
-	r = request
-	# print(r.data)
-	print(type(r.data))
-	nparr = np.frombuffer(r.data, np.uint8)
+@app.route('/api/detectBear', methods=['POST'])
+def detect():
+	nparr = np.frombuffer(request.data, np.uint8)
 	img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-	img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+	detector = Detector(img)
+	detector.doDetect()
 
-	_, img_encoded = cv2.imencode('.jpg', img)
-	# response = {'message': 'image received. size={}x{}'.format(img.shape[1], img.shape[0])
-	# 			}
-	# response_pickled = jsonpickle.encode(response)
+	newImg = detector.getImgAfterDetection()
 
-	response_pickled = jsonpickle.encode(img_encoded)
-	# print(jsonpickle.decode(response_pickled).tobytes())
-	response_pickled = jsonpickle.decode(response_pickled).tobytes()
+	_, img_encoded = cv2.imencode('.jpg', newImg)
+
+	response_pickled = jsonpickle.decode(jsonpickle.encode(img_encoded)).tobytes()
 
 	return Response(response=response_pickled, status=200, mimetype=None)
 
 
-@app.route("/api/config", methods=['GET'])
+@app.route("/", methods=['GET'])
 def config():
-	return "<h1>TEST</h1>"
+	return "<h1>Polar Bear Detector</h1>"
 
 
-# app.run(host="0.0.0.0", port=5000)
+app.run(host="0.0.0.0", port=80)
