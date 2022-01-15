@@ -102,10 +102,10 @@ class Detector:
 									countUnit += 1
 						self._densityListWithCoord.append([countUnit, (i, j)])
 						density.append(countUnit)
-		sum1 = 0
-		for i in self._densityListWithCoord:
-			sum1 += i[0]
-		print(sum1)
+		# sum1 = 0
+		# for i in self._densityListWithCoord:
+		# 	sum1 += i[0]
+		# print(sum1)
 		return density
 
 	def isBearExisted(self):
