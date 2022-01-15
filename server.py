@@ -33,4 +33,4 @@ def config():
 	return "<h1>TEST</h1>"
 
 
-app.run(host="0.0.0.0", port=5000)
+# app.run(host="0.0.0.0", port=5000)
