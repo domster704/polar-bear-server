@@ -26,4 +26,9 @@ def test():
 	return Response(response=response_pickled, status=200, mimetype=None)
 
 
+@app.route("/api/config", methods=['GET'])
+def config():
+	return "<h1>TEST</h1>"
+
+
 # app.run(host="0.0.0.0", port=5000)
