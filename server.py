@@ -6,9 +6,11 @@ import cv2
 app = Flask(__name__)
 
 
-@app.route('/api/test', methods=['GET', 'POST'])
+@app.route('/api/test', methods=['POST'])
 def test():
 	r = request
+	# print(r.data)
+	print(type(r.data))
 	nparr = np.frombuffer(r.data, np.uint8)
 	img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
@@ -31,4 +33,4 @@ def config():
 	return "<h1>TEST</h1>"
 
 
-# app.run(host="0.0.0.0", port=5000)
+app.run(host="0.0.0.0", port=5000)
