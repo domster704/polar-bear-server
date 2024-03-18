@@ -5,4 +5,4 @@
 - Найден ли медведь или нет (True или False)
 - Если найден, то картинку с выделением белового медведя в карсных квадарт
 
-![BearConverted.JPG](BearConverted.JPG)
+![BearConverted](https://github.com/domster704/polar-bear-server/assets/61056244/0339c0d5-d115-45d4-8a4c-b36275380926)
