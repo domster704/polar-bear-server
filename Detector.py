@@ -61,7 +61,7 @@ class Detector:
 		if not maxDensityIndex:
 			self._isBearExistedOnPhoto = False
 			return
-
+		print(self._densityListWithCoord[maxDensityIndex][0])
 		if 9 < self._densityListWithCoord[maxDensityIndex][0] < 16:
 			lineSize = 100
 			position = self._densityListWithCoord[maxDensityIndex][1]
@@ -115,6 +115,7 @@ class Detector:
 		return self._imgWithRec
 
 
-# img = cv2.imread("Bear.jpg")
-# detector = Detector(img)
-# detector.doDetect()
+if __name__ == "__main__":
+	img = cv2.imread("Bear.jpg")
+	detector = Detector(img)
+	detector.doDetect()
